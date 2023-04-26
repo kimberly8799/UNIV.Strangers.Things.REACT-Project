@@ -11,6 +11,7 @@ const fetchPosts = async () => {
         });
         const result = await response.json();
         console.log(result);
+        if (result.error) throw new Error("SERVER ERROR" + result.error.message);
         return result;
     } catch (err) {
         console.error(err)

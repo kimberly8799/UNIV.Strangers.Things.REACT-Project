@@ -21,9 +21,11 @@ const App = () => {
             </nav>
 
             <Route exact path="/">
-                <h1>Hello World</h1>
+                <div class="home">
+                <h1>Hello World . . </h1>
                 <h2>Welcome to Strangers Things!</h2>
-                <p>I solelemly swear I am up to no good...</p>
+                <h4>I solelemly swear I am up to no good...</h4>
+                </div>
             </Route>
             {/* /posts */}
             <Route path="/posts">

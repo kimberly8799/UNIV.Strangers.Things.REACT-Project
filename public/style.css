@@ -1,15 +1,29 @@
-h1 {
-    text-align: center;
+html {
+    margin: 8px;
 }
-
+.home {
+    margin-top: 60px;
+    text-align: center;
+    color: red;
+}
+h1.posts {
+    color: red;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
 h2 {
     text-align: center;
 }
-
-p {
-    text-align: center;
+h3.posts {
+    padding-top: 10px;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
-
+h6 {
+    margin: 15px;
+    text-align: right;
+}
 nav {
     display: flex;
     width: 100vw;
