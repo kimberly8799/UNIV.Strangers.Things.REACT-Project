@@ -1,6 +1,14 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
+import { 
+    Posts,
+    Profile,
+    Register,
+    Login
+} from "./components/index.js"
+
+
 const App = () => {
     return (
         <>
@@ -19,19 +27,19 @@ const App = () => {
             </Route>
             {/* /posts */}
             <Route path="/posts">
-                <h1>Posts</h1>
+                <Posts />
             </Route>
             {/* /profile */}
             <Route path="/profile">
-                <h1>Profile</h1>
+                <Profile />
             </Route>
             {/* /register */}
             <Route path="/account/register">
-                <h1>Sign up here</h1>
+                <Register />
             </Route>
             {/* /login */}
             <Route path="/account/login">
-                <h1>Login</h1>
+                <Login />
             </Route>
         </>
     )

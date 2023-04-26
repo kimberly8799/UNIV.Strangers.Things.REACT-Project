@@ -3,7 +3,8 @@ import React from "react";
 const Profile = () => {
     return (
         <>
-        <p>Member info:</p>
+        <h1>Profile</h1>
+        <p>Member information:</p>
         </>
     )
 }
