@@ -1,31 +1,58 @@
 html {
     margin: 8px;
+    background-color: rgb(20, 20, 20);
+    color: aliceblue;
+
+}
+a {
+    color: blue;
 }
 .home {
     margin-top: 60px;
     text-align: center;
     color: red;
 }
-h1.posts {
+.enter {
+    text-decoration: none;
+    font-style: italic;
+    color: black;
+}
+.homeEnter {
+    padding: 3px;
+    box-shadow: 0 0 2px 2px rgb(179, 23, 23);
+}
+button.homeEnter:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px 5px rgb(179, 23, 23);
+    font-size: 13.5px;
+}
+h1 {
     color: red;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 h2 {
     text-align: center;
 }
-h3.posts {
+h3 {
     padding-top: 10px;
     font-size: larger;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
 }
 h6 {
-    margin: 15px;
+    margin: 10px;
     text-align: right;
 }
 nav {
     display: flex;
     width: 100vw;
     justify-content: space-around;
+}
+.posts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.timestamp {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

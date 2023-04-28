@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { fetchPosts } from '../api';
+import { getAPI } from '../api';
+
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
 
     const fetchData = async () => {
-        const response = await fetchPosts();
-        setPosts(response?.data?.posts);
+        const result = await getAPI({
+            path: "/posts",
+        });
+        console.log(result);
+        setPosts(result?.posts)
+      
     }
 
     useEffect(() => {
@@ -17,29 +22,31 @@ const Posts = () => {
     return (
         <>
             <div>
-                <h1 class="posts">strange things happen here...</h1>
+                <h1 className="posts">strange things happen here...</h1>
 
                 {
                     posts
-                        ? posts.map((post, idx) => (
-                            <div key={post._id ?? idx}>
-                                <h3 class="posts">
-                                    {post.title} |
-                                    {post.location} |
-                                    {post.price}
-                                </h3>
-                                <p>{post.description}</p>
-                                <h4>{post.message}</h4>
-                                <br></br>
-                                <h6>
-                                    {post.username} |
-                                    {post.createdAt} |
-                                    {post.updatedAt}
-                                </h6>
-                                <hr></hr>
-
-                            </div>))
-                        : <strong>No posts to display</strong>
+                        ? posts.map(
+                            ({ _id, title, price, location,
+                                description, message, username,
+                                createdAt, updatedAt }, idx) => (
+                                <div key={_id ?? idx}>
+                                    <div className="posts">
+                                        <h3>{title}</h3>
+                                        <h3>Location: {location}</h3>
+                                        <h3>Price: {price}</h3>
+                                    </div>
+                                    <p>{description}</p>
+                                    <h5>Messages: {message}</h5>
+                                    <div className="timestamp">
+                                    <h6>By: {username}</h6>
+                                    <h6>Created at: {createdAt} |
+                                        Last update: {updatedAt}
+                                    </h6>
+                                    </div>
+                                    <hr></hr>
+                                </div>)
+                       ) : <strong>No posts to display</strong>
                 }
             </div>
         </>
