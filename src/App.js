@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Link } from 'react-router-dom';
+import { getAPI } from './api';
 
-import { 
+import {
     Posts,
     Profile,
     Account,
+    EnterSite,
+    Home
 } from "./components/index.js"
 
 
@@ -12,47 +15,86 @@ const App = () => {
     //members
     const [token, setToken] = useState(null);
     //new users
-    const [newUser, setNewUser] = useState(null);
+    const [member, setMember] = useState(null);
+    const [posts, setPosts] = useState([]);
+
+
+    const fetchPosts = async () => {
+        const data = await getAPI({
+            path: "/posts",
+        });
+
+        console.log(data);
+
+        if (data?.posts) {
+            setPosts(data.posts)
+        }
+
+        // if (token && !member) {
+        //     const data = await getAPI({
+        //         path: "/posts",
+        //         token
+        //     });
+        //     if (data.username) {
+        //         setMember(data.username);
+        //     }
+        // }
+    }
 
     useEffect(() => {
+        fetchPosts();
         console.log("TOKEN app lvl: " + token)
+        console.log("MEMBER app lvl: " + member)
     }, [token])
 
 
     return (
         <>
-            <nav>
-                <Link to="/">Home</Link>
-                <Link to="/profile">Profile</Link> 
+            <nav className="original">
+                <Link to="/">...</Link>
+                <Link to="/homepage">Home</Link>
                 <Link to="/posts">Posts</Link>
+                {
+                    token
+                        ? <Link to="/profile">My Account</Link>
+                        : null
+                }
             </nav>
-
+            {/* /Enter Site page */}
             <Route exact path="/">
-                <div className="home">
-                    <h1>Hello World . . </h1>
-                    <h2>Welcome to Strangers' Things!</h2>
-                    <button className="homeEnter">
-                        {<Link className="enter" to="/account/login">
-                            I solemnly swear I am up to no good...
-                        </Link>}
-                    </button>
-                </div>
+                <EnterSite />
+                {/* /homepage */}
+            </Route>
+            <Route path="/homepage">
+                <Home />
+                <nav className="account">
+                    <Link to="/account/login">Log In</Link>
+                    <br></br>
+                    <Link to="/account/register">Register</Link>
+                </nav>
             </Route>
             {/* /posts */}
             <Route path="/posts">
-                <Posts />
+                <h1>strange things happen here...</h1>
+                <Posts
+                    token={token}
+                    member={member}
+                    posts={posts}
+                    fetchPosts={fetchPosts}
+                />
             </Route>
             {/* /profile */}
             <Route path="/profile">
-                <Profile 
-                newUser={newUser}
+                <Profile
+                    member={member}
+                    token={token}
                 />
             </Route>
             {/* /register & login */}
             <Route path="/account/:actionType">
-                <Account 
-                setNewUser={setNewUser} 
-                setToken={setToken} 
+                <Account
+                    setMember={setMember}
+                    setToken={setToken}
                 />
             </Route>
         </>

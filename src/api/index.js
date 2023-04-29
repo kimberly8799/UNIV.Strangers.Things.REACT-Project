@@ -15,10 +15,7 @@ const getOptions = (method, body, token) => ({
     ...(body && {
         body: JSON.stringify(body)
     })
-    //...(body && { body: JSON.stringify(body)})
-
 });
-
 
 export const getAPI = async ({ path, method, body, token }) => {
     try {
@@ -39,25 +36,3 @@ export const getAPI = async ({ path, method, body, token }) => {
         console.error(e);
     }
 }
-
-
-
-
-//  async () => {
-//     try {
-//         const url = `${BASE_URL}/posts`;
-//         const response = await fetch(url, {
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             }
-//         });
-//         const result = await response.json();
-//         console.log(result);
-//         if (result.error) throw new Error("SERVER ERROR" + result.error.message);
-//         return result;
-//     } catch (err) {
-//         console.error(err)
-//     }
-// }
-
-// export { fetchPosts };

@@ -1,38 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { getAPI } from '../api';
+import React from "react";
+import { LoggedIn } from '.';
 
 
-const Posts = () => {
-    const [posts, setPosts] = useState([]);
-
-    const fetchData = async () => {
-        const data = await getAPI({
-            path: "/posts",
-        });
-
-        console.log(data);
-        
-        if (data?.posts) {
-            setPosts(data.posts)
-        }
-    }
-
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-
+const Posts = ({ posts, member, token, fetchPosts }) => {
+    console.log("post"+token)
     return (
         <>
+        {member && <h3>You are logged in</h3> }
             <div>
-                <h1 className="posts">strange things happen here...</h1>
+                {member && <LoggedIn token={token} fetchPosts={fetchPosts} /> }
 
                 {
                     posts
                         ? posts.map(
                             ({ _id, title, price, location,
-                                description, message, username,
-                                createdAt, updatedAt }, idx) => (
+                                description, message, author,
+                                createdAt, updatedAt, willDeliver }, idx) => (
                                 <div key={_id ?? idx}>
                                     <div className="posts">
                                         <h3>{title}</h3>
@@ -40,9 +23,10 @@ const Posts = () => {
                                         <h3>Price: {price}</h3>
                                     </div>
                                     <p>{description}</p>
-                                    <h5>Messages: {message}</h5>
+                                    <h4>{willDeliver ? "will deliver" : "must be picked up!"}</h4>
+                                    {member && <h5>Messages: {message}</h5> }
                                     <div className="timestamp">
-                                        <h6>By: {username}</h6>
+                                        {member && <h6>By: {author.username}</h6> }
                                         <h6>Created at: {createdAt} |
                                             Last update: {updatedAt}
                                         </h6>

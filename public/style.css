@@ -1,6 +1,6 @@
 html {
     margin: 8px;
-    background-color: rgb(20, 20, 20);
+    background-color: rgb(13, 13, 13);
     color: aliceblue;
 
 }
@@ -8,7 +8,11 @@ a {
     color: blue;
 }
 .home {
-    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 250px;
     text-align: center;
     color: red;
 }
@@ -41,8 +45,9 @@ h6 {
     margin: 10px;
     text-align: right;
 }
-nav {
+nav.original {
     display: flex;
+    flex-direction: row;
     width: 100vw;
     justify-content: space-around;
 }
@@ -50,6 +55,7 @@ nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: rgb(39, 21, 21);
 }
 .timestamp {
     display: flex;
