@@ -1,9 +1,10 @@
 import React from "react";
 
-const Profile = () => {
+const Profile = ({ newUser }) => {
     return (
         <>
-        <h1 className="profile">Profile</h1>
+        <h1 className="profile">Hello {newUser}! </h1>
+        <h3>Profile</h3>
         <p>Member information:</p>
         </>
     )

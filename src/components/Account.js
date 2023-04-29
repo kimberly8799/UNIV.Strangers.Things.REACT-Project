@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { getAPI } from '../api';
 
 
-const Account = ({ token, setToken }) => {
+const Account = ({ setToken, setNewUser }) => {
     const params = useParams();
     const { actionType } = params;
+    console.log(params);
+    const history = useHistory();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -13,36 +15,48 @@ const Account = ({ token, setToken }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (actionType === "register") {
-            const response = await getAPI ({
-                method: "POST",
-                body: JSON.stringify({
-                    user: {
-                        username: "this",
-                        password: "that"
-                    }
-                }),
-                token
-            });
-            //setToken(response?.data.token);
-            console.log(response);
-
-        } else if (actionType === "login") {
-            const data = await getAPI ({
-                method: "GET",
-                token
-            })
-            console.log(data);
+        const requestBody = {
+            user: {
+                username,
+                password
+            }
         }
 
-        
-       
+        //register
+        const data = await getAPI({
+            path: `/users/${actionType}`,
+            method: "POST",
+            body: requestBody,
+        });
+        const { token } = data
+        console.log("account " + token)
+    
+
+        //login
+        if (token) {
+            const data = await getAPI({
+                path: "/users/me",
+                token
+            })
+
+            const member = data.username;
+            console.log(data.username);
+            if (member) {
+                setUsername('');
+                setPassword('');
+                setToken(data.token);
+                setNewUser(member);
+                history.push('/profile');
+            }
+        }
     }
+
+
 
     return (
         <>
             <h1>{actionType === "register" ? "Become a member" : "welcome back old friend..."}</h1>
-            <p>{actionType === "register" ? "come to the dark side..." : "Login"}</p>
+            <p>{actionType === "register" ? "join the dark side..." : "Login"}</p>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
@@ -74,7 +88,7 @@ const Account = ({ token, setToken }) => {
 
         </>
     )
-}
 
+}
 
 export default Account;

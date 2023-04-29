@@ -9,10 +9,13 @@ import {
 
 
 const App = () => {
+    //members
     const [token, setToken] = useState(null);
+    //new users
+    const [newUser, setNewUser] = useState(null);
 
     useEffect(() => {
-        console.log("TOKEN: " + token)
+        console.log("TOKEN app lvl: " + token)
     }, [token])
 
 
@@ -41,11 +44,16 @@ const App = () => {
             </Route>
             {/* /profile */}
             <Route path="/profile">
-                <Profile />
+                <Profile 
+                newUser={newUser}
+                />
             </Route>
             {/* /register & login */}
             <Route path="/account/:actionType">
-                <Account token={token} setToken={setToken} />
+                <Account 
+                setNewUser={setNewUser} 
+                setToken={setToken} 
+                />
             </Route>
         </>
     )

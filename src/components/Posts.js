@@ -6,12 +6,15 @@ const Posts = () => {
     const [posts, setPosts] = useState([]);
 
     const fetchData = async () => {
-        const result = await getAPI({
+        const data = await getAPI({
             path: "/posts",
         });
-        console.log(result);
-        setPosts(result?.posts)
-      
+
+        console.log(data);
+        
+        if (data?.posts) {
+            setPosts(data.posts)
+        }
     }
 
     useEffect(() => {
@@ -39,14 +42,14 @@ const Posts = () => {
                                     <p>{description}</p>
                                     <h5>Messages: {message}</h5>
                                     <div className="timestamp">
-                                    <h6>By: {username}</h6>
-                                    <h6>Created at: {createdAt} |
-                                        Last update: {updatedAt}
-                                    </h6>
+                                        <h6>By: {username}</h6>
+                                        <h6>Created at: {createdAt} |
+                                            Last update: {updatedAt}
+                                        </h6>
                                     </div>
                                     <hr></hr>
                                 </div>)
-                       ) : <strong>No posts to display</strong>
+                        ) : <strong>No posts to display</strong>
                 }
             </div>
         </>
