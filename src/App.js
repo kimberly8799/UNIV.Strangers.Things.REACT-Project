@@ -9,6 +9,7 @@ import {
     EnterSite,
     Home
 } from "./components/index.js"
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const App = () => {
@@ -50,21 +51,24 @@ const App = () => {
 
     return (
         <>
+             <Route exact path="/">
+                <EnterSite />
+                {/* /homepage */}
+            </Route>
+            <Route path="/:_">
+                {/* show nav for all pages except root page */}
             <nav className="original">
                 <Link to="/">...</Link>
                 <Link to="/homepage">Home</Link>
                 <Link to="/posts">Posts</Link>
                 {
                     token
-                        ? <Link to="/profile">My Account</Link>
+                        ? <Link to={`/profile/${member}`}>My Account</Link>
                         : null
                 }
             </nav>
-            {/* /Enter Site page */}
-            <Route exact path="/">
-                <EnterSite />
-                {/* /homepage */}
             </Route>
+            {/* /Enter Site page */}
             <Route path="/homepage">
                 <Home />
                 <nav className="account">
@@ -84,11 +88,14 @@ const App = () => {
                 />
             </Route>
             {/* /profile */}
-            <Route path="/profile">
+            <Route path="/profile/:username">
                 <Profile
                     member={member}
                     token={token}
                 />
+            </Route>
+            <Route path="/profile">
+                <Redirect to={`/profile/${member}`} />
             </Route>
             {/* /register & login */}
             <Route path="/account/:actionType">

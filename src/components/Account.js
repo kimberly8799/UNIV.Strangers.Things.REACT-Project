@@ -45,9 +45,9 @@ const Account = ({ setToken, setMember }) => {
                 //clear inputs & reset form
                 setUsername('');
                 setPassword('');
-                setToken(data.token);
+                setToken(token);
                 setMember(member);
-                history.push('/posts');
+                history.push(`/profile`);
             }
         }
     }

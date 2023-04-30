@@ -2,8 +2,6 @@ import React from "react";
 import { useParams } from 'react-router-dom';
 
 const Profile = ({ member }) => {
-    //const params = useParams()
-    //const {actionType} = params;
 
     return (
         <>

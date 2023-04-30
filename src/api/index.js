@@ -15,9 +15,11 @@ const getOptions = (method, body, token) => ({
     ...(body && {
         body: JSON.stringify(body)
     })
+  
 });
 
 export const getAPI = async ({ path, method, body, token }) => {
+    console.log("here: " + token);
     try {
         const result = await fetch(
             getURL(path),

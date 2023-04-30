@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { getAPI } from '../api';
 
-const LoggedIn = ({ fetchPosts, token }) => {
-    console.log("first" + token);
+const LoggedIn = ({ fetchPosts, token } ) => {
+    //console.log("first" + token);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
-    const [willDeliver, setWillDeliver] = useState('');
+    const [location, setLocation] = useState('');
+    const [willDeliver, setWillDeliver] = useState(false);
 
     const createPosts = async (event) => {
         event.preventDefault();
-        console.log("here" + token);
+        //console.log("here" + token);
         const LoggedPostData = await getAPI({
             path: "/posts",
             method: "POST",
@@ -20,7 +21,8 @@ const LoggedIn = ({ fetchPosts, token }) => {
                     title,
                     description,
                     price,
-                    willDeliver
+                    willDeliver,
+                    location
                 }
             }
         });
@@ -31,6 +33,7 @@ const LoggedIn = ({ fetchPosts, token }) => {
             setDescription('');
             setPrice('');
             setWillDeliver('');
+            setLocation('');
             await fetchPosts();
         }
     }
@@ -44,6 +47,12 @@ const LoggedIn = ({ fetchPosts, token }) => {
                     type="text"
                     onChange={event => setTitle(event.target.value)}
                     value={title}
+                />
+                <label htmlFor="location">Location</label>
+                <input
+                    type="text"
+                    onChange={event => setLocation(event.target.value)}
+                    value={setLocation}
                 />
                 <label htmlFor="description">Description</label>
                 <input

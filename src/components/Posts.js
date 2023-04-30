@@ -3,7 +3,7 @@ import { LoggedIn } from '.';
 
 
 const Posts = ({ posts, member, token, fetchPosts }) => {
-    console.log("post"+token)
+    console.log("post "+token)
     return (
         <>
         {member && <h3>You are logged in</h3> }
