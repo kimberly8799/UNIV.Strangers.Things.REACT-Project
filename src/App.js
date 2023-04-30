@@ -12,6 +12,7 @@ import {
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 
+
 const App = () => {
     //members
     const [token, setToken] = useState(null);
@@ -51,22 +52,22 @@ const App = () => {
 
     return (
         <>
-             <Route exact path="/">
+            <Route exact path="/">
                 <EnterSite />
                 {/* /homepage */}
             </Route>
             <Route path="/:_">
                 {/* show nav for all pages except root page */}
-            <nav className="original">
-                <Link to="/">...</Link>
-                <Link to="/homepage">Home</Link>
-                <Link to="/posts">Posts</Link>
-                {
-                    token
-                        ? <Link to={`/profile/${member}`}>My Account</Link>
-                        : null
-                }
-            </nav>
+                <nav className="original">
+                    <Link to="/">...</Link>
+                    <Link to="/homepage">Home</Link>
+                    <Link to="/posts">Posts</Link>
+                    {
+                        token
+                            ? <Link to={`/profile/${member}`}>My Account</Link>
+                            : null
+                    }
+                </nav>
             </Route>
             {/* /Enter Site page */}
             <Route path="/homepage">
@@ -80,12 +81,15 @@ const App = () => {
             {/* /posts */}
             <Route path="/posts">
                 <h1>strange things happen here...</h1>
-                <Posts
-                    token={token}
-                    member={member}
-                    posts={posts}
-                    fetchPosts={fetchPosts}
-                />
+                {posts
+                    ? <Posts
+                        token={token}
+                        member={member}
+                        posts={posts}
+                        fetchPosts={fetchPosts}
+                    />
+                    : <strong>No posts to display</strong>
+                }
             </Route>
             {/* /profile */}
             <Route path="/profile/:username">
