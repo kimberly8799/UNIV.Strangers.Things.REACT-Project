@@ -19,6 +19,8 @@ const App = () => {
     //new users
     const [member, setMember] = useState(null);
     const [posts, setPosts] = useState([]);
+    const [userPosts, setUserPosts] = useState([])
+    const [ID, setID] = useState(null);
 
 
     const fetchPosts = async () => {
@@ -46,15 +48,14 @@ const App = () => {
 
     useEffect(() => {
         fetchPosts();
-        console.log("TOKEN app lvl: " + token)
-        console.log("MEMBER app lvl: " + member)
+        // console.log("TOKEN app lvl: " + token)
+        // console.log("MEMBER app lvl: " + member)
     }, [token])
 
 
     return (
         <>
             <Route exact path="/">
-                <Link className="hoverLog" to="/account/login">...</Link>
                 <EnterSite />
             </Route>
             <Route path="/:_">
@@ -92,6 +93,9 @@ const App = () => {
                 <Profile
                     member={member}
                     token={token}
+                    userPosts={userPosts}
+                    ID={ID}
+                    fetchPosts={fetchPosts}
                 />
             </Route>
             <Route path="/profile">
@@ -102,6 +106,8 @@ const App = () => {
                 <Account
                     setMember={setMember}
                     setToken={setToken}
+                    setUserPosts={setUserPosts}
+                    setID={setID}
                 />
             </Route>
         </>

@@ -19,14 +19,13 @@ const getOptions = (method, body, token) => ({
 });
 
 export const getAPI = async ({ path, method, body, token }) => {
-    console.log("here: " + token);
     try {
         const result = await fetch(
             getURL(path),
             getOptions(method, body, token)
         );
         const response = await result.json();
-        console.log(response);
+        //console.log(response);
         // if result.json comes back error, want to see error first so that catch can 'catch it' later
         if (response.error) { 
             alert(response.error.message);

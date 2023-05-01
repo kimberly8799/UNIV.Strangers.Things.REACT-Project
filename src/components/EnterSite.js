@@ -7,14 +7,15 @@ const EnterSite = () => {
         <>
             <div className='overlay'>
                 <VideoBG />
-                <div className="home" id="displayEnter">
-                    <h1>Hello World . . </h1>
-                    <button className="homeEnter">
-                        {<Link className="enter" to="/homepage">
-                            ENTER HERE.
-                        </Link>}
-                    </button>
-                </div>
+                    <div className="home" id="displayEnter">
+                        <h1>Hello World . . </h1>
+                        <button className="homeEnter">
+                            {<Link className="enter" to="/homepage">
+                                ENTER HERE.
+                            </Link>}
+                        </button>
+                    </div>
+                 {/* <Link className="hoverLog" to="/account/login">. . .</Link> */}
             </div>
         </>
     )

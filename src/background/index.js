@@ -10,7 +10,9 @@ const VideoBG = () => {
 
     const displayButton = () => {
         const ENTER = document.getElementById("displayEnter");
-        ENTER.style.display = "flex"
+        const replay = document.getElementById("hoverLog");
+        ENTER.style.display = "flex";
+        //replay.style.display= "none"
     }
 
     // const hoverLogin = () => {

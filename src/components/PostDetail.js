@@ -29,7 +29,7 @@ const PostDetail = ({
                 </div>
                 <p>{description}</p>
                 <h4>{willDeliver ? "will deliver" : "must be picked up!"}</h4>
-                {member && <h5>Messages: {message}</h5>}
+                {member && <h5>Messages: </h5>}
                 <div className="timestamp">
                     <h6>By: {author.username}</h6>
                     {isAuthor && <p> this post was created by you</p>}

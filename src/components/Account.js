@@ -3,10 +3,9 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { getAPI } from '../api';
 
 
-const Account = ({ setToken, setMember }) => {
+const Account = ({ setToken, setMember, setUserPosts, setID }) => {
     const params = useParams();
     const { actionType } = params;
-    console.log(params);
     const history = useHistory();
 
     const [username, setUsername] = useState("");
@@ -29,7 +28,6 @@ const Account = ({ setToken, setMember }) => {
             body: requestBody,
         });
         const { token } = data
-        console.log("account " + token)
     
 
         //login
@@ -39,14 +37,17 @@ const Account = ({ setToken, setMember }) => {
                 token
             })
 
+            console.log("USERS/ME");
+            console.log(data);
             const member = data.username;
-            console.log(data.username);
             if (member) {
                 //clear inputs & reset form
                 setUsername('');
                 setPassword('');
                 setToken(token);
                 setMember(member);
+                setUserPosts(data.posts);
+                setID(data._id);
                 history.push(`/profile`);
             }
         }
@@ -57,7 +58,7 @@ const Account = ({ setToken, setMember }) => {
     return (
         <>
             <h1>{actionType === "register" ? "Become a member" : "I solemnly swear I am up to no good..."}</h1>
-            <p>{actionType === "register" ? "join the dark side..." : "Login"}</p>
+            <p style={{marginLeft: "20px"}}> {actionType === "register" ? "join the dark side..." : "Login"}</p>
             <form className="form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
@@ -80,6 +81,7 @@ const Account = ({ setToken, setMember }) => {
                 </div>
                 <br></br>
                 <button type="submit">{actionType === "register" ? "Register" : "Enter"}</button>
+                <br></br>
                 <br></br>
                 {actionType === "register"
                     ? <Link to="/account/login">Already have an account? Log in here.</Link>

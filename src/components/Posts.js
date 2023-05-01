@@ -11,7 +11,7 @@ const Posts = ({
 
     return (
         <>
-            {member && <h3>You are logged in</h3>}
+            {member && <h3><i style={{color: "turquoise"}}>~ You are logged on ~</i></h3>}
             {member && <AddPosts token={token} fetchPosts={fetchPosts} />}
             <div className="displayPosts">
                 {

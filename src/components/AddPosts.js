@@ -25,7 +25,7 @@ const AddPosts = ({ fetchPosts, token } ) => {
             }
         });
         console.log("helllooooo?" + LoggedPostData);
-        const post = LoggedPostData
+        const {post} = LoggedPostData
         if (post) {
             setTitle('');
             setDescription('');
@@ -37,7 +37,7 @@ const AddPosts = ({ fetchPosts, token } ) => {
     }
     return (
         <>
-            <form onSubmit={createPosts}>
+            <form onSubmit={createPosts} style={{marginLeft: "20px"}}>
                 <div className="createPost">
                 <h3>create a new post</h3>
                 <label htmlFor="title">Title</label>
