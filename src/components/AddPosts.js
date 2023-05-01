@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { getAPI } from '../api';
 
-const LoggedIn = ({ fetchPosts, token } ) => {
-    //console.log("first" + token);
+const AddPosts = ({ fetchPosts, token } ) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -11,7 +10,6 @@ const LoggedIn = ({ fetchPosts, token } ) => {
 
     const createPosts = async (event) => {
         event.preventDefault();
-        //console.log("here" + token);
         const LoggedPostData = await getAPI({
             path: "/posts",
             method: "POST",
@@ -32,7 +30,7 @@ const LoggedIn = ({ fetchPosts, token } ) => {
             setTitle('');
             setDescription('');
             setPrice('');
-            setWillDeliver('');
+            setWillDeliver(false);
             setLocation('');
             await fetchPosts();
         }
@@ -52,7 +50,7 @@ const LoggedIn = ({ fetchPosts, token } ) => {
                 <input
                     type="text"
                     onChange={event => setLocation(event.target.value)}
-                    value={setLocation}
+                    value={location}
                 />
                 <label htmlFor="description">Description</label>
                 <input
@@ -80,4 +78,4 @@ const LoggedIn = ({ fetchPosts, token } ) => {
     )
 }
 
-export default LoggedIn;
+export default AddPosts;

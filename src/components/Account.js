@@ -56,9 +56,9 @@ const Account = ({ setToken, setMember }) => {
 
     return (
         <>
-            <h1>{actionType === "register" ? "Become a member" : "welcome back old friend..."}</h1>
+            <h1>{actionType === "register" ? "Become a member" : "I solemnly swear I am up to no good..."}</h1>
             <p>{actionType === "register" ? "join the dark side..." : "Login"}</p>
-            <form onSubmit={handleSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
                     <input
@@ -78,6 +78,7 @@ const Account = ({ setToken, setMember }) => {
                         onChange={event => setPassword(event.target.value)}
                     />
                 </div>
+                <br></br>
                 <button type="submit">{actionType === "register" ? "Register" : "Enter"}</button>
                 <br></br>
                 {actionType === "register"

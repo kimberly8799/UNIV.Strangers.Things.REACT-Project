@@ -54,7 +54,6 @@ const App = () => {
         <>
             <Route exact path="/">
                 <EnterSite />
-                {/* /homepage */}
             </Route>
             <Route path="/:_">
                 {/* show nav for all pages except root page */}
@@ -72,11 +71,6 @@ const App = () => {
             {/* /Enter Site page */}
             <Route path="/homepage">
                 <Home />
-                <nav className="account">
-                    <Link to="/account/login">Log In</Link>
-                    <br></br>
-                    <Link to="/account/register">Register</Link>
-                </nav>
             </Route>
             {/* /posts */}
             <Route path="/posts">

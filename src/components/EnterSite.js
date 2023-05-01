@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import VideoBG from '../background/index';
 
 const EnterSite = () => {
     return (
         <>
-            <div className="home">
-                <h1>Hello World . . </h1>
-                <button className="homeEnter">
-                    {<Link className="enter" to="/homepage">
-                        I solemnly swear I am up to no good...
-                    </Link>}
-                </button>
+            <div className='overlay'>
+                <VideoBG />
+                <div className="home" id="displayEnter">
+                    <h1>Hello World . . </h1>
+                    <button className="homeEnter">
+                        {<Link className="enter" to="/homepage">
+                            ENTER HERE.
+                        </Link>}
+                    </button>
+                </div>
             </div>
         </>
     )

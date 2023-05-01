@@ -1,23 +1,51 @@
 html {
-    margin: 8px;
-    background-color: rgb(13, 13, 13);
+    background-color: black;
     color: aliceblue;
-
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+video {
+    width: 1200px;
+    height: 1000px;
+}
+
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
 a {
     color: blue;
 }
+#displayEnter {
+    font-size: 20px;
+    display: none;
+}
 .home {
+    color: red;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-top: 250px;
-    text-align: center;
-    color: red;
+    position: absolute;
+}
+
+#displayEnter {
+    font-size: 20px;
+    /* display: none; */
 }
 .enter {
     text-decoration: none;
+    font-size: 15px;
     font-style: italic;
     color: black;
 }
@@ -25,16 +53,43 @@ a {
     padding: 3px;
     box-shadow: 0 0 2px 2px rgb(179, 23, 23);
 }
-button.homeEnter:hover {
+button {
+    padding: 3px;
+    box-shadow: 0 0 2px 2px rgb(179, 23, 23);
+}
+button:hover {
     cursor: pointer;
-    box-shadow: 0 0 5px 5px rgb(179, 23, 23);
-    font-size: 13.5px;
+    box-shadow: 0 0 8px 8px rgb(179, 23, 23);
+    font-size: 18px;
+}
+.homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 h1 {
     color: red;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding-left:20px;
 }
+.displayPosts {
+    margin: 10px;
+    padding: 10px;
+}
+.account {
+   display: flex;
+   flex-direction: row;
+}
+.acc {
+    margin: 25px 50px;
+}
+.form {
+    margin: 20px;
+}
+
 h2 {
+    margin: 20px;
     text-align: center;
 }
 h3 {
@@ -55,7 +110,7 @@ nav.original {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: rgb(39, 21, 21);
+    background-color: rgb(40, 9, 9);
 }
 .timestamp {
     display: flex;
