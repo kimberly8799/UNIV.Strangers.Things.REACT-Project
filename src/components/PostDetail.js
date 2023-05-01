@@ -1,8 +1,8 @@
 import React from 'react';
 import { getAPI } from '../api';
 
-const PostsDetails = ({
-    posts: { _id, title, price, location,
+const PostDetail = ({
+    post: { _id, title, price, location,
         description, message, isAuthor, author,
         createdAt, updatedAt, willDeliver },
     member, token, idx,
@@ -44,4 +44,4 @@ const PostsDetails = ({
     )
 }
 
-export default PostsDetails;
+export default PostDetail;

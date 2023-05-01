@@ -13,6 +13,11 @@ const VideoBG = () => {
         ENTER.style.display = "flex"
     }
 
+    // const hoverLogin = () => {
+    //     const hoverLog = document.getElementById("hoverLog");
+    //     hoverLog.style.display="block"
+    // }
+
     return (
         <div className="video">
             <video autoPlay onClick={refresh} onEnded={displayButton}>

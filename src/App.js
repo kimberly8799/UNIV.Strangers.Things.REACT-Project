@@ -54,6 +54,7 @@ const App = () => {
     return (
         <>
             <Route exact path="/">
+                <Link className="hoverLog" to="/account/login">...</Link>
                 <EnterSite />
             </Route>
             <Route path="/:_">

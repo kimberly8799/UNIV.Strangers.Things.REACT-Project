@@ -1,9 +1,8 @@
 import React from "react";
-import { AddPosts, PostsDetails } from '.';
+import { AddPosts, PostDetail } from '.';
 
 
 const Posts = ({
-    posts: { _id, },
     posts,
     member,
     token,
@@ -17,11 +16,11 @@ const Posts = ({
             <div className="displayPosts">
                 {
                     posts.map(
-                        (posts, idx) => (
-                            <PostsDetails 
-                            key={posts._id ?? idx} 
+                        (post, idx) => (
+                            <PostDetail 
+                            key={post._id ?? idx} 
                             token={token} 
-                            posts={posts}
+                            post={post}
                             fetchPosts={fetchPosts} 
                             />
                         )
