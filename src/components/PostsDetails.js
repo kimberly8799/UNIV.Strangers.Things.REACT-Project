@@ -10,13 +10,12 @@ const PostsDetails = ({
 }) => {
 
     const handleDelete = async () => {
-        console.log(_id);
         await getAPI({
             path: `/posts/${_id}`,
             method: 'DELETE',
             token,
         });
-        //fetchPosts();
+        fetchPosts();
         //onDelete && onDelete()
     }
 

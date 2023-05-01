@@ -24,6 +24,7 @@ const App = () => {
     const fetchPosts = async () => {
         const data = await getAPI({
             path: "/posts",
+            token
         });
 
         console.log(data);
