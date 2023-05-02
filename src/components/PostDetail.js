@@ -55,8 +55,9 @@ const PostDetail = ({
                     </div>
                     
                     {isAuthor && <button onClick={handleDelete}>Delete</button>}
-                    {isAuthor && <p> this post was created by you</p>}
-                
+                    <div className='delete'>
+                        {isAuthor && <p> this post was created by you</p>}
+                    </div>
                 </div>
                 <br></br>
                 <hr></hr>

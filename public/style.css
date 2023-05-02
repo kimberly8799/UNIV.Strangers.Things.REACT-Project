@@ -22,6 +22,9 @@ video {
     align-content: center;
     align-items: center;
 }
+.overlay:hover {
+    cursor: pointer;
+}
 
 a {
     color: blue;
