@@ -1,10 +1,9 @@
 import React from "react";
-import { useParams, useHistory } from 'react-router-dom';
-import { PostDetail, Messages, Posts } from "."
+import { PostDetail } from "."
 
 const Profile = ({
     userData: { posts, messages, active, _id },
-    member, token, userData, ID, fetchPosts
+    member, token, userData, searchValue, fetchPosts
 }) => {
 
     console.log("profile")
@@ -13,7 +12,20 @@ const Profile = ({
     return (
         <>
             <h1 className="profile">Hello {member}! </h1>
-            <h3 style={{ color: "turquoise", marginLeft: "20px" }}><i>Profile</i></h3>
+            <h3 style={{ color: "turquoise", marginLeft: "20px" }}>
+                <i>Profile</i>
+            </h3>
+
+            {/* <div className="search">
+            <label htmlFor="search">Search{" "}</label>
+            <input
+                    type="text"
+                    name="search"
+                    onChange={handleSearch}
+                    value={searchValue}
+                />
+            </div> */}
+
             <div className="displayPosts">
                 <p>Your Listings:</p>
                 {

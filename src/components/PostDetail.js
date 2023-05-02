@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getAPI } from '../api';
-import { AddMsg, ShowMsg } from '.'
+import handleSearch, { AddMsg, ShowMsg } from '.'
 
 
 const PostDetail = ({
@@ -10,7 +10,7 @@ const PostDetail = ({
         createdAt, updatedAt, willDeliver,
         messages },
     member, token, idx, userData,
-    fetchPosts,
+    fetchPosts, posts
 
 }) => {
 
@@ -28,7 +28,7 @@ const PostDetail = ({
 
     return (
         <>
-            <div key={_id ?? idx}>
+            <div key={_id ?? idx} className='eachPost'>
                 <div className="posts">
                     <h3>{title}</h3>
                     <h3>Location: {location}</h3>
@@ -37,28 +37,32 @@ const PostDetail = ({
                 <div className="postDetails">
                     <p>{description}</p>
                     <h4>{willDeliver == true ? "will deliver" : "must be picked up!"}</h4>
-
+                    {author.username && <h6>By: {author.username}</h6>}
                     <div className="timestamp">
-                        {author.username && <h6>By: {author.username}</h6>}
-                        {isAuthor && <p> this post was created by you</p>}
-                        {isAuthor && <button onClick={handleDelete}>Delete</button>}
                         <h6>Created at: {createdAt} |
                             Last update: {updatedAt}
                         </h6>
                     </div>
-                    <div className='msgContainer'></div>
+                    
                     <ShowMsg messages={messages} />
                     { !isAuthor && author.username !== member ?
                         <AddMsg 
                             member={member} 
                             token={token} 
                             fetchPosts={fetchPosts} 
+                            posts={posts}
                         /> : null }
                     </div>
+                    
+                    {isAuthor && <button onClick={handleDelete}>Delete</button>}
+                    {isAuthor && <p> this post was created by you</p>}
+                
                 </div>
+                <br></br>
                 <hr></hr>
         </>
     )
 }
+
 
 export default PostDetail;

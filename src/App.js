@@ -38,6 +38,11 @@ const App = () => {
         // console.log("MEMBER app lvl: " + member)
     }, [token])
 
+    const LogOut = async () => {
+        setToken('');
+        setMember(null);
+        await fetchPosts;
+    }
 
     return (
         <>
@@ -52,8 +57,12 @@ const App = () => {
                     <Link to="/posts">Posts</Link>
                     {
                         token
-                            ? <Link to={`/profile/${member}`}>My Account</Link>
-                            : null
+                            ? (
+                                <>
+                                    <Link to={`/profile/${member}`}>My Account</Link>
+                                    <a href="#" onClick={LogOut}>Log Out</a>
+                                </>
+                            ) : null
                     }
                 </nav>
             </Route>
@@ -76,8 +85,8 @@ const App = () => {
             </Route>
             {/* /profile */}
             <Route path="/profile">
-            <Redirect to={`/profile/${member}`}/>
-            {member == null && <Redirect to="/account/login"/> }
+                <Redirect to={`/profile/${member}`} />
+                {member == null && <Redirect to="/account/login" />}
                 <Profile
                     member={member}
                     token={token}
