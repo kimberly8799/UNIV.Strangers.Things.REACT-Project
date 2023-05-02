@@ -3,8 +3,9 @@ import { getAPI } from '../api';
 
 const PostDetail = ({
     post: { _id, title, price, location,
-        description, message, isAuthor, author,
+        description, isAuthor, author,
         createdAt, updatedAt, willDeliver },
+    // messages: { fromUser, content },
     member, token, idx,
     fetchPosts
 }) => {
@@ -27,16 +28,28 @@ const PostDetail = ({
                     <h3>Location: {location}</h3>
                     <h3>Price: {price}</h3>
                 </div>
-                <p>{description}</p>
-                <h4>{willDeliver ? "will deliver" : "must be picked up!"}</h4>
-                {member && <h5>Messages: </h5>}
-                <div className="timestamp">
-                    <h6>By: {author.username}</h6>
-                    {isAuthor && <p> this post was created by you</p>}
-                    {isAuthor && <button onClick={handleDelete}>Delete</button>}
-                    <h6>Created at: {createdAt} |
-                        Last update: {updatedAt}
-                    </h6>
+                <div className="postDetails">
+                    <p>{description}</p>
+                    <h4>{willDeliver ? "will deliver" : "must be picked up!"}</h4>
+                     {/* {fromUser !== null &&
+                        <h5>Messages:
+                            {messages.length > 0 &&
+                                <div key={idx} className='messages'>
+                                    <h3>{fromUser.username}</h3>
+                                    <p>{content}</p>
+                                </div>
+                            }
+                        </h5>
+                        
+                    }  */}
+                    <div className="timestamp">
+                        {author.username && <h6>By: {author.username}</h6>}
+                        {isAuthor && <p> this post was created by you</p>}
+                        {isAuthor && <button onClick={handleDelete}>Delete</button>}
+                        <h6>Created at: {createdAt} |
+                            Last update: {updatedAt}
+                        </h6>
+                    </div>
                 </div>
                 <hr></hr>
             </div>

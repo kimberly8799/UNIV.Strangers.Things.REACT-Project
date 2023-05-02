@@ -14,14 +14,10 @@ import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const App = () => {
-    //members
-    const [token, setToken] = useState(null);
-    //new users
-    const [member, setMember] = useState(null);
     const [posts, setPosts] = useState([]);
-    const [userPosts, setUserPosts] = useState([])
-    const [ID, setID] = useState(null);
-
+    const [token, setToken] = useState(null);
+    const [member, setMember] = useState(null);
+    const [userData, setUserData] = useState([])
 
     const fetchPosts = async () => {
         const data = await getAPI({
@@ -34,16 +30,6 @@ const App = () => {
         if (data?.posts) {
             setPosts(data.posts)
         }
-
-        // if (token && !member) {
-        //     const data = await getAPI({
-        //         path: "/posts",
-        //         token
-        //     });
-        //     if (data.username) {
-        //         setMember(data.username);
-        //     }
-        // }
     }
 
     useEffect(() => {
@@ -89,25 +75,21 @@ const App = () => {
                 }
             </Route>
             {/* /profile */}
-            <Route path="/profile/:username">
+            <Route path="/profile">
+            <Redirect to={`/profile/${member}`}/>
                 <Profile
                     member={member}
                     token={token}
-                    userPosts={userPosts}
-                    ID={ID}
+                    userData={userData}
                     fetchPosts={fetchPosts}
                 />
-            </Route>
-            <Route path="/profile">
-                <Redirect to={`/profile/${member}`} />
             </Route>
             {/* /register & login */}
             <Route path="/account/:actionType">
                 <Account
                     setMember={setMember}
                     setToken={setToken}
-                    setUserPosts={setUserPosts}
-                    setID={setID}
+                    setUserData={setUserData}
                 />
             </Route>
         </>

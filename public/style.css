@@ -124,6 +124,9 @@ nav.original {
     justify-content: space-between;
     background-color: rgb(40, 9, 9);
 }
+.postDetails {
+    margin: 8px;
+}
 .timestamp {
     display: flex;
     flex-direction: row;

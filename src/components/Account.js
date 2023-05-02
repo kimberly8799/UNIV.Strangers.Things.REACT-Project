@@ -3,7 +3,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { getAPI } from '../api';
 
 
-const Account = ({ setToken, setMember, setUserPosts, setID }) => {
+const Account = ({ setToken, setMember, setUserData }) => {
     const params = useParams();
     const { actionType } = params;
     const history = useHistory();
@@ -37,17 +37,17 @@ const Account = ({ setToken, setMember, setUserPosts, setID }) => {
                 token
             })
 
-            console.log("USERS/ME");
-            console.log(data);
+            console.log("USERS/ME - logged in");
+            //console.log(data);
             const member = data.username;
+            const memberData = data;
             if (member) {
                 //clear inputs & reset form
                 setUsername('');
                 setPassword('');
                 setToken(token);
                 setMember(member);
-                setUserPosts(data.posts);
-                setID(data._id);
+                setUserData(memberData);
                 history.push(`/profile`);
             }
         }
