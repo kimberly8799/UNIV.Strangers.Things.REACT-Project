@@ -7,3 +7,5 @@ export { default as AddPosts } from './AddPosts';
 export { default as PostDetail } from './PostDetail';
 export { default as ShowMsg } from "./ShowMsg";
 export { default as AddMsg } from "./AddMsg";
+export { default as AddBox } from './AddBox';
+export { default as EditPost } from './EditPost';

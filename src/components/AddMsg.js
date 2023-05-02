@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getAPI } from '../api';
+import { AddBox } from '.';
 
 const AddMsg = ({ fetchPosts, token, posts }) => {
     const [message, setMessage] = useState('');
@@ -11,7 +12,7 @@ const AddMsg = ({ fetchPosts, token, posts }) => {
         setShow(!show);
     };
 
-    const createMsg = async (event) => {
+     const createMsg = async (event) => {
         console.log("got here")
         event.preventDefault();
         const msgData = await getAPI({
@@ -39,6 +40,13 @@ const AddMsg = ({ fetchPosts, token, posts }) => {
 
     return (
         <>
+        {/* <AddBox 
+            token={token}
+            show={show}
+            isShown={isShown}
+            setIsShown={setIsShown}
+            setMessage={setMessage}
+        /> */}
             {token &&
                 <form onSubmit={createMsg} >
                     <div className="hoverArea" id="createMsg">
@@ -68,7 +76,9 @@ const AddMsg = ({ fetchPosts, token, posts }) => {
                 </form>
             }
         </>
-    )
+    ) 
 }
 
 export default AddMsg;
+
+

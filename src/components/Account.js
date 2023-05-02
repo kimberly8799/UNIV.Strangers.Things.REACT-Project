@@ -57,7 +57,10 @@ const Account = ({ setToken, setMember, setUserData }) => {
 
     return (
         <>
-            <h1>{actionType === "register" ? "Become a member" : "I solemnly swear that I am up to no good..."}</h1>
+            <br></br>
+            <br></br>
+            <h1 style={{textAlign: "center"}}>{actionType === "register" ? "Become a member" : "I solemnly swear that I am up to no good..."}</h1>
+            <div className="accDisplay">
             <i style={{color: "turquoise", fontWeight: "800"}}><p style={{marginLeft: "20px"}}> {actionType === "register" ? "join the dark side..." : "Login"}</p></i>
             <form className="form" onSubmit={handleSubmit}>
                 <div>
@@ -89,7 +92,7 @@ const Account = ({ setToken, setMember, setUserData }) => {
                 }
 
             </form>
-
+            </div>
         </>
     )
 
