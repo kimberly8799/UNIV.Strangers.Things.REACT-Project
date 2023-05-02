@@ -1,13 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { getAPI } from '../api';
+import { AddMsg, ShowMsg } from '.'
+
 
 const PostDetail = ({
     post: { _id, title, price, location,
         description, isAuthor, author,
-        createdAt, updatedAt, willDeliver },
-    // messages: { fromUser, content },
-    member, token, idx,
-    fetchPosts
+        createdAt, updatedAt, willDeliver,
+        messages },
+    member, token, idx, userData,
+    fetchPosts,
+
 }) => {
 
     const handleDelete = async () => {
@@ -20,6 +24,8 @@ const PostDetail = ({
         //onDelete && onDelete()
     }
 
+   
+
     return (
         <>
             <div key={_id ?? idx}>
@@ -30,18 +36,8 @@ const PostDetail = ({
                 </div>
                 <div className="postDetails">
                     <p>{description}</p>
-                    <h4>{willDeliver ? "will deliver" : "must be picked up!"}</h4>
-                     {/* {fromUser !== null &&
-                        <h5>Messages:
-                            {messages.length > 0 &&
-                                <div key={idx} className='messages'>
-                                    <h3>{fromUser.username}</h3>
-                                    <p>{content}</p>
-                                </div>
-                            }
-                        </h5>
-                        
-                    }  */}
+                    <h4>{willDeliver == true ? "will deliver" : "must be picked up!"}</h4>
+
                     <div className="timestamp">
                         {author.username && <h6>By: {author.username}</h6>}
                         {isAuthor && <p> this post was created by you</p>}
@@ -50,9 +46,17 @@ const PostDetail = ({
                             Last update: {updatedAt}
                         </h6>
                     </div>
+                    <div className='msgContainer'></div>
+                    <ShowMsg messages={messages} />
+                    { !isAuthor && author.username !== member ?
+                        <AddMsg 
+                            member={member} 
+                            token={token} 
+                            fetchPosts={fetchPosts} 
+                        /> : null }
+                    </div>
                 </div>
                 <hr></hr>
-            </div>
         </>
     )
 }

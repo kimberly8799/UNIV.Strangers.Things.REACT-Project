@@ -13,8 +13,8 @@ const Profile = ({
     return (
         <>
             <h1 className="profile">Hello {member}! </h1>
+            <h3 style={{ color: "turquoise", marginLeft: "20px" }}><i>Profile</i></h3>
             <div className="displayPosts">
-                <h3 style={{ color: "turquoise" }}><i>Profile</i></h3>
                 <p>Your Listings:</p>
                 {
                     member &&
@@ -27,6 +27,7 @@ const Profile = ({
                                     post={post}
                                     fetchPosts={fetchPosts}
                                 />
+                                
                             }
                         </div>
                     ))

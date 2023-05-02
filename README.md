@@ -4,4 +4,3 @@ Run npm install --save-dev react-scripts
 npm start
 
 Enjoy!
-

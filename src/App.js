@@ -77,6 +77,7 @@ const App = () => {
             {/* /profile */}
             <Route path="/profile">
             <Redirect to={`/profile/${member}`}/>
+            {member == null && <Redirect to="/account/login"/> }
                 <Profile
                     member={member}
                     token={token}

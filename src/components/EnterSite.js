@@ -15,7 +15,7 @@ const EnterSite = () => {
                             </Link>}
                         </button>
                     </div>
-                 {/* <Link className="hoverLog" to="/account/login">. . .</Link> */}
+                 <Link className="hoverLog" to="/account/login">. . .</Link>
             </div>
         </>
     )

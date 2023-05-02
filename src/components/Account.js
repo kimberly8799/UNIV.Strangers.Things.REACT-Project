@@ -57,8 +57,8 @@ const Account = ({ setToken, setMember, setUserData }) => {
 
     return (
         <>
-            <h1>{actionType === "register" ? "Become a member" : "I solemnly swear I am up to no good..."}</h1>
-            <p style={{marginLeft: "20px"}}> {actionType === "register" ? "join the dark side..." : "Login"}</p>
+            <h1>{actionType === "register" ? "Become a member" : "I solemnly swear that I am up to no good..."}</h1>
+            <i style={{color: "turquoise", fontWeight: "800"}}><p style={{marginLeft: "20px"}}> {actionType === "register" ? "join the dark side..." : "Login"}</p></i>
             <form className="form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
@@ -70,7 +70,7 @@ const Account = ({ setToken, setMember, setUserData }) => {
                         onChange={event => setUsername(event.target.value)}
                     />
                     <br />
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">Password:{" "}</label>
                     <input
                         required
                         name="password"

@@ -67,7 +67,7 @@ const AddPosts = ({ fetchPosts, token } ) => {
                 <label htmlFor="willDeliver">Will Deliver</label>
                 <input
                     type="checkbox"
-                    onChange={event => setWillDeliver(event.target.value)}
+                    onChange={()=> setWillDeliver(true)}
                     value={willDeliver}
                 />
                 <button type="submit">create</button>
