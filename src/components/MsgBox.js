@@ -1,7 +1,7 @@
 import React from 'react';
 // import { createMsg, toggleClass } from './AddMsg';
 
-const AddBox = ({
+const MsgBox = ({
     token, show, isShown,
     setIsShown, setMessage
 
@@ -48,5 +48,5 @@ const AddBox = ({
     )
 }
 
-export default AddBox;
+export default MsgBox;
 

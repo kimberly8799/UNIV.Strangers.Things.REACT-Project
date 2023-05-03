@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { getAPI } from '../api';
-import handleSearch, { AddMsg, ShowMsg } from '.'
+import handleSearch, { AddMsg, ShowMsg, PostBox } from '.'
 
 
 const PostDetail = ({
@@ -13,7 +13,8 @@ const PostDetail = ({
     fetchPosts, posts
 
 }) => {
-
+    const history = useHistory();
+    
     const handleDelete = async () => {
         await getAPI({
             path: `/posts/${_id}`,
@@ -24,7 +25,23 @@ const PostDetail = ({
         //onDelete && onDelete()
     }
 
-   
+    const handleEdit = async () => {
+        await getAPI({
+            path: `/posts/${_id}`,
+            method: "PATCH",
+            token,
+            body: {
+                post: {
+                    title,
+                    description,
+                    price,
+                    willDeliver,
+                    location
+                }
+            }
+        });
+    }
+
 
     return (
         <>
@@ -43,24 +60,32 @@ const PostDetail = ({
                             Last update: {updatedAt}
                         </h6>
                     </div>
-                    
+
                     <ShowMsg messages={messages} />
-                    { !isAuthor && author.username !== member ?
-                        <AddMsg 
-                            member={member} 
-                            token={token} 
-                            fetchPosts={fetchPosts} 
+                    {!isAuthor && author.username !== member ?
+                        <AddMsg
+                            member={member}
+                            token={token}
+                            fetchPosts={fetchPosts}
                             posts={posts}
-                        /> : null }
-                    </div>
-                    
-                    {isAuthor && <button onClick={handleDelete}>Delete</button>}
-                    <div className='delete'>
-                        {isAuthor && <p> this post was created by you</p>}
-                    </div>
+                        /> : null}
                 </div>
-                <br></br>
-                <hr></hr>
+
+                {isAuthor &&
+                    <><button onClick={handleDelete}>Delete</button>
+                        <button onClick={(() => (handleDelete() &&
+                            history.push(`/posts/${_id}`)
+                        ))}
+                        >Edit</button>
+                    </>
+
+                }
+                <div className='delete'>
+                    {isAuthor && <p> this post was created by you</p>}
+                </div>
+            </div>
+            <br></br>
+            <hr></hr>
         </>
     )
 }

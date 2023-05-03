@@ -53,7 +53,7 @@ const App = () => {
                 {/* show nav for all pages except root page */}
                 <nav className="original">
                     <Link to="/">...</Link>
-                    <Link to="/homepage">Home</Link>
+                  { !token && <Link to="/homepage">Home</Link> }
                     <Link to="/posts">Posts</Link>
                     {
                         token
@@ -68,7 +68,7 @@ const App = () => {
             </Route>
             {/* /Enter Site page */}
             <Route path="/homepage">
-                <Home />
+                <Home member={member} token={token} />
             </Route>
             {/* /posts */}
             <Route path="/posts">
